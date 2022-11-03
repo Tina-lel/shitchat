@@ -1,3 +1,0 @@
-#!/bin/sh
-echo "unmounting ftp share..."
-umount ~/.cache/chat
