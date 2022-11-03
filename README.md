@@ -20,3 +20,5 @@ open up the "chat" file with a text editor of your choice and scroll down until 
 run the chat script (./chat), and wait until you are connected.
 
 to chat press ctrl+c wich will open the "newmsg" box, press ctrl+c again, to exit
+
+after you exited, run ./umount, to unmount the ftp share
