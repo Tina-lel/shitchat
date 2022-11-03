@@ -1,5 +1,5 @@
 # shitchat
-a shitty, non encrypted, unsecure, plain text chat, via ftp
+a shitty, non encrypted, unsecure, plain text chat, via ftp (slapped together in 20 minutes because i was bored lol)
 
 Warning:
 -
