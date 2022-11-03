@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "unmounting sftp share..."
+umount -l ~/.cache/chat

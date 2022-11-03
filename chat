@@ -1,0 +1,18 @@
+#!/bin/sh
+echo "Shitty batch chat (sekurity +99999)"
+echo " "
+echo "Enter ur name xdd"
+read -r NAME
+
+while [[ 1 ]]
+do
+	clear
+	watch -n 1 "cat ~/.cache/chat/main.txt | tail -n $(($LINES - 2))"
+	echo " "
+	echo -n "newmsg: "
+	read -r MAIN
+	date "+%T" >> ~/.cache/chat/main.txt
+	echo -n "$NAME: " >> ~/.cache/chat/main.txt
+	echo "$MAIN" >> ~/.cache/chat/main.txt
+	echo "--------" >> ~/.cache/chat/main.txt
+done
