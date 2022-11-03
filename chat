@@ -26,6 +26,6 @@ do
 	read -r MAIN
 	date "+%T" >> ~/.cache/chat/$DIR/main.txt
 	echo -n "$NAME: " >> ~/.cache/chat/$DIR/main.txt
-	echo $MAIN >> ~/.cache/chat/$DIR/main.txt
+	echo "$MAIN" >> ~/.cache/chat/$DIR/main.txt
 	echo "--------" >> ~/.cache/chat/$DIR/main.txt
 done
