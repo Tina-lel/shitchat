@@ -12,9 +12,9 @@ sshfs
 ussage:
 -
 
-git clone https://github.com/Tina-lel/shitchat
+git clone https://github.com/Tina-lel/shitchat && cd shitchat
 
-run ./perms once, to set the permissions for the scripts (or do it yourself)
+run chmod +x perms and then ./perms once, to set the permissions for the scripts (or do it yourself)
 
 open up the "mount" file with a text editor of your choice and edit the lines starting with "export". (sftp address, user, password, and a user writeable remote directory on the server (wich must contain a file called "main.txt") ), then save the file.
 
