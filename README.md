@@ -20,7 +20,7 @@ open up the "mount" file with a text editor of your choice and edit the lines st
 
 run the mount script (./mount), and enter the password, for your sshd server
 
-run the chat script (./chat)
+and then run the chat script (./chat)
 
 to chat press ctrl+c wich will open the "newmsg" box, press ctrl+c again, to exit
 
