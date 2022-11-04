@@ -46,6 +46,8 @@ umount: unmounts the SFTP share
 
 help: displays the help message
 
+help_msgbox: displays msgbox commands
+
 readme: displays this file
 
 Msgbox commands:
