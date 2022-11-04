@@ -38,3 +38,8 @@ umount: unmounts the SFTP share
 help: displays the help message
 
 readme: displays this file
+
+Msgbox commands:
+-
+
+!exit: exits the chat, and unmounts the SFTP share
