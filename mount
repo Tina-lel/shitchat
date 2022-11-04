@@ -1,9 +1,0 @@
-#!/bin/sh
-
-export SFTP=""
-export PORT=""
-export USR=""
-export DIR=""
-
-mkdir -p ~/.cache/chat
-sshfs -p $PORT $USR@$SFTP:$DIR ~/.cache/chat
