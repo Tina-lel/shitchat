@@ -14,14 +14,14 @@ ussage:
 
 git clone https://github.com/Tina-lel/shitchat && cd shitchat
 
-run chmod +x perms and then ./perms once, to set the permissions for the scripts (or do it yourself)
+run chmod +x chat
 
-open up the "mount" file with a text editor of your choice and edit the lines starting with "export". (sftp address, user, password, and a user writeable remote directory on the server (wich must contain a file called "main.txt") ), then save the file.
+open up the "chat" file with a text editor of your choice and scroll down to the "SFTP CONFIG START" part. (you need to enter a sftp address, user, password, and a user writeable remote directory on a SFTP server (wich must contain a file called "main.txt") ), then save the file.
 
-run the mount script (./mount), and enter the password, for your sshd server
+run ./chat mount, and enter the password, for your sshd server
 
-and then run the chat script (./chat)
+then run ./chat chat
 
-to chat press ctrl+c wich will open the "newmsg" box, press ctrl+c again, to exit
+to chat press ctrl+c wich will open the "newmsg" box, enter "!exit", to exit
 
-after you exited, run ./umount, to unmount the sftp share
+if you did not exit via !exit in the message box, run ./chat umount, to unmount the sftp share
