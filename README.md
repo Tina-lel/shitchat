@@ -30,7 +30,11 @@ Commands:
 -
 
 chat: the main chat
+
 mount: mounts the SFTP share
+
 umount: unmounts the SFTP share
+
 help: displays the help message
+
 readme: displays this file
