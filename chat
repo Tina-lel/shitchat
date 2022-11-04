@@ -1,0 +1,78 @@
+#!/bin/sh
+
+if [[ $1 == "mount" ]];
+then
+
+	# SFTP CONFIG START
+
+	export SFTP="127.0.0.1"
+	export PORT="22"
+	export USR="user"
+	export DIR="chat"
+
+	#SFTP CONFIG END
+
+	mkdir -p ~/.cache/chat
+	echo "connecting to $SFTP"
+	sshfs -p $PORT $USR@$SFTP:$DIR ~/.cache/chat
+
+elif [[ $1 == "chat" ]]; 
+then
+	echo "Shitchat (sekurity +99999)"
+	echo "--------------------------"
+	
+	if [[ ! -f ~/.cache/chat/main.txt ]];
+	then
+		echo "configure and run \"./chat mount\" to point to a directory containing \"main.txt\" on a remote SFTP server first"
+		exit
+	fi
+
+	echo "Enter a name"
+	echo -n "-> "
+	read -r NAME
+
+	while [[ 1 ]]
+	do
+		clear
+		watch -n 1 "cat ~/.cache/chat/main.txt | tail -n $(($LINES - 2))"
+		echo " "
+		echo "-------"
+		echo -n "newmsg: "
+		read -r MAIN
+		if [[ $MAIN == "!exit" ]];
+		then
+			echo "umounting sftp share..."
+			umount -l ~/.cache/chat
+			exit
+		else
+			date "+%T" >> ~/.cache/chat/main.txt
+			echo -n "$NAME: " >> ~/.cache/chat/main.txt
+			echo "$MAIN" >> ~/.cache/chat/main.txt
+			echo "--------" >> ~/.cache/chat/main.txt
+		fi
+	done
+
+elif [[ $1 == "umount" ]];
+then
+	echo "unmounting sftp share..."
+	umount -l ~/.cache/chat
+
+elif [[ $1 == "help" ]];
+then
+	echo "---------------------------------------------------------"
+	echo "available commands are: chat, mount, umount, help, ussage"
+	echo "---------------------------------------------------------"
+	echo "chat: the main chat"
+	echo "mount: mounts the SFTP share"
+	echo "umount: unmounts the SFTP share"
+	echo "help: displays this message"
+	echo "readme: display the Readme file"
+
+elif [[ $1 == "readme" ]];
+then
+	cat README.md
+
+else
+	echo "unknown command \"$1\" use \"help\" for a list of commands"
+
+fi
