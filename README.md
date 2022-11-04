@@ -20,7 +20,7 @@ open up the "chat" file with a text editor of your choice and scroll down to the
 
 run ./chat mount, and enter the password, for your sshd server
 
-then run ./chat chat
+then run ./chat chat, and enter a name
 
 to chat press ctrl+c wich will open the "newmsg" box, enter "!exit", to exit
 
