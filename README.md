@@ -16,13 +16,13 @@ git clone https://github.com/Tina-lel/shitchat && cd shitchat
 
 run chmod +x chat
 
-open up the "chat" file with a text editor of your choice and scroll down to the "SFTP CONFIG START" part. (you need to enter an sftp address, a user, a password, and a user writeable remote directory on a SFTP server (wich must contain a plain text file called "main") ), then save the file.
+open up the "chat" file with a text editor of your choice and find the #GENERAL CONFIG START part, replace "MyName" with another name. next, scroll down to the "SFTP CONFIG START" part. (you need to enter an sftp address, a user, a password, and a user writeable remote directory on a SFTP server (wich must contain a plain text file called "main") ), then save the file.
 
 run ./chat mount, and enter the password, for your sshd server.
 
-then run ./chat chat, and enter a name.
+then run ./chat chat
 
-then select a chat room (you can create new ones by entering a name, wich is not already present.)
+and then select a chat room (you can create new ones by entering a name, wich is not already present.)
 
 to chat press ctrl+c wich will open the "newmsg" box, enter !help, for a help message, enter !back, to go back to the chat room selection screen, enter "!exit", to exit.
 
