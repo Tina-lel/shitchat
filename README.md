@@ -1,5 +1,5 @@
 # shitchat
-a shitty, unsecure, plain text chat, via sftp (slapped together in 20 minutes because i was bored lol).
+a shitty, unsecure, plain text chat, with multiple chat rooms, via sftp (slapped together in 20 minutes because i was bored lol).
 
 Warning:
 -
