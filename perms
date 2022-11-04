@@ -1,4 +1,0 @@
-#!/bin/sh
-chmod +x mount
-chmod +x umount
-chmod +x chat
