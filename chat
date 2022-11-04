@@ -98,7 +98,7 @@ then
 
 elif [[ $1 == "readme" ]];
 then
-	cat README.md
+	curl https://raw.githubusercontent.com/Tina-lel/shitchat/main/README.md
 
 else
 	echo "unknown command \"$1\" use \"help\" for a list of commands"
