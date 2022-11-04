@@ -5,11 +5,11 @@ Warning:
 -
 This is not secure at all, and you should NOT use this at all lol. use this at your own risk
 
-dependencies:
+Dependencies:
 -
 sshfs
 
-ussage:
+Ussage:
 -
 
 git clone https://github.com/Tina-lel/shitchat && cd shitchat
@@ -25,3 +25,12 @@ then run ./chat chat
 to chat press ctrl+c wich will open the "newmsg" box, enter "!exit", to exit
 
 if you did not exit via !exit in the message box, run ./chat umount, to unmount the sftp share
+
+Commands:
+-
+
+chat: the main chat
+mount: mounts the SFTP share
+umount: unmounts the SFTP share
+help: displays the help message
+readme: displays this file
