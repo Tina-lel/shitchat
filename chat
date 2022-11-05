@@ -41,7 +41,7 @@ then
 		echo "Wich chat room would you like to enter? (you can create new ones)"
 		echo " "
 		read -r CHAT
-	
+
 		while [[ 1 ]]
 		do
 			clear
