@@ -81,7 +81,7 @@ then
 elif [[ $1 == "help" ]];
 then
 	echo "----------------------------------------------------------------------"
-	echo "available commands are: chat, mount, umount, help, ussage, help_msgbox"
+	echo "available commands are: chat, mount, umount, help, readme, help_msgbox"
 	echo "----------------------------------------------------------------------"
 	echo "chat: the main chat"
 	echo "mount: mounts the SFTP share"
