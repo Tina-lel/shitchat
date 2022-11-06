@@ -115,6 +115,9 @@ then
 
 elif [[ $1 == "umount" ]];
 then
+	echo "writing user profile..."
+	sed -i '$d' ~/.cache/chat/.users/$NAME
+	echo "Currently: Offline" >> ~/.cache/chat/.users/$NAME
 	echo "unmounting sftp share..."
 	umount -l ~/.cache/chat
 
