@@ -50,6 +50,7 @@ then
 			echo "-------"
 			echo -n "msgbox: "
 			read -r MAIN
+			echo "processing message..."
 			if [[ $MAIN == "!exit" ]];
 			then
 				echo "umounting sftp share..."
