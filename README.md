@@ -1,5 +1,5 @@
 # shitchat
-a shitty, unsecure, plain text chat, via sftp, with multiple chat rooms and user lists. written in bash lol (slapped together in 20 minutes because i was bored lol).
+a shitty, unsecure, plain text chat, with file sharing, multiple chat rooms and user lists, via sftp. written in bash lol (slapped together in 20 minutes because i was bored lol).
 
 Warning:
 -
