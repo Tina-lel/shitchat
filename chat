@@ -1,0 +1,290 @@
+#!/bin/bash
+
+# GENERAL CONFIG START
+
+export NAME="MyName"
+export STATUS="ReplaceMe"
+
+# GENERAL CONFIG END
+
+if [[ $1 == "mount" ]];
+then
+
+	# SFTP CONFIG START
+
+	export SFTP="127.0.0.1"
+	export PORT="22"
+	export USR="user"
+	export DIR="chat"
+
+	#SFTP CONFIG END
+
+	mkdir -p ~/.cache/chat
+	echo "connecting to $SFTP"
+	sshfs -p $PORT $USR@$SFTP:$DIR ~/.cache/chat
+
+elif [[ $1 == "chat" ]]; 
+then
+	echo "Shitchat (sekurity +99999)"
+	echo "--------------------------"
+	
+	if [[ ! -f ~/.cache/chat/main ]];
+	then
+		echo "configure and run \"./chat mount\" to point to a directory containing a plain text file called \"main\" on a remote SFTP server first"
+		exit
+	fi
+
+	echo "writing user profile..."
+	mkdir -p ~/.cache/chat/.users
+	touch ~/.cache/chat/.users/$NAME
+	echo "Name: $NAME" > ~/.cache/chat/.users/$NAME
+	echo "Status: $STATUS" >> ~/.cache/chat/.users/$NAME
+	echo -n "Last login: " >> ~/.cache/chat/.users/$NAME
+	date >> ~/.cache/chat/.users/$NAME
+	echo "Currently: Online" >> ~/.cache/chat/.users/$NAME
+	while :
+	do
+		echo " "
+		echo "reading files..."
+		echo " "
+		ls ~/.cache/chat/
+		echo " "
+		echo "Wich chat room would you like to enter? (you can create new ones)"
+		echo " "
+		read -r -e CHAT
+
+		while :
+		do
+			clear
+			watch -n 1 "cat ~/.cache/chat/$CHAT | tail -n $(($LINES - 2))"
+			echo "-------"
+			echo "msgbox: "
+			read -r -e MAIN
+			echo "processing message..."
+			if [[ $MAIN == "!exit" ]];
+			then
+				echo "writing user profile..."
+				sed -i '$d' ~/.cache/chat/.users/$NAME
+				echo "Currently: Offline" >> ~/.cache/chat/.users/$NAME
+				echo "umounting sftp share..."
+				umount -l ~/.cache/chat
+				exit
+			elif [[ $MAIN == "!back" ]];
+			then
+				break
+			elif [[ $MAIN == "!users" ]];
+			then
+				echo " "
+				echo "list of users seen on this server:"
+				echo " "
+				ls ~/.cache/chat/.users/
+				echo " "
+				echo "enter a user name, !list or type !cancel"
+				while :
+				do
+					read -r -e USERINPUT
+					echo " "
+					if [[ $USERINPUT == "!cancel" ]];
+					then
+						break
+					elif [[ $USERINPUT == "!list" ]];
+					then
+						ls ~/.cache/chat/.users/
+						echo " "
+					else
+						cat ~/.cache/chat/.users/$USERINPUT
+						echo " "
+					fi
+				done
+			elif [[ $MAIN == "!upload" ]];
+			then
+				mkdir -p ~/.cache/chat/.files
+				echo " "
+				echo "Enter the dir where the files you want to upload are located, or type !cancel"
+				while :
+				do
+					read -r -e U_DIR
+					if [[ $U_DIR == "!cancel" ]];
+					then
+						break
+					fi
+					echo " "
+					ls $U_DIR
+					if [[ $? == "0" ]];
+					then
+						echo " "
+						echo "what file do you want to upload? (you can upload multiple by using \"*\") or type !list or !cancel"
+						read -r -e U_FILE
+						if [[ $U_FILE == "!list" ]];
+						then
+							ls $U_DIR
+							echo " "
+						elif [[ $U_FILE == "!cancel" ]];
+						then
+							break
+						else
+							echo " "
+							ls -d ~/.cache/chat/.files/*/
+							echo " "
+							echo "sub-dir? (leave blank to upload to the main folder) (you can create new ones)"
+							read -r -e U_SUBDIR
+							mkdir -p ~/.cache/chat/.files/$U_SUBDIR
+							echo "uploading files..."
+							echo " "
+							rsync --progress $U_DIR/$U_FILE ~/.cache/chat/.files/$U_SUBDIR
+							if [[ $? == "0" ]];
+							then
+								echo "success"
+								echo "press enter to return to the chat"
+								read
+								break
+							else
+								echo " "
+								echo "no such file \"$U_DIR/$U_FILE\", please enter another dir and file"
+								echo " "
+							fi
+						fi
+					else
+						echo "ls failed, please enter another dir"
+						echo " "
+					fi
+				done
+			elif [[ $MAIN == "!download" ]];
+			then
+				mkdir -p ~/.cache/chat/.files
+				echo " "
+				echo "list of files uploaded to this server:"
+				echo " "
+				ls -p ~/.cache/chat/.files/ | grep -v /
+				echo " "
+				echo "what file do you want to download? (you can download multiple by using \"*\"), or use !list, !cancel and !sub"
+				while :
+				do
+					read -r -e D_FILE
+					if [[ $D_FILE == "!list" ]];
+					then
+						echo " "
+						ls -p ~/.cache/chat/.files/ | grep -v /
+						echo " "
+					elif [[ $D_FILE == "!sub" ]];
+					then
+						echo " "
+						ls -d ~/.cache/chat/.files/*/
+						echo " "
+						echo "what sub-dir to enter?, or use !list or !cancel to leave sub dir selection"
+						while :
+						do
+							read -r -e D_SUBDIR
+							if [[ $D_SUBDIR == "!list" ]];
+							then
+								echo " "
+								ls -d ~/.cache/chat/.files/*/
+								echo " "
+							elif [[ $D_SUBDIR == "!cancel" ]];
+							then
+								break
+							else
+								echo " "
+								ls ~/.cache/chat/.files/$D_SUBDIR
+								echo " "
+								if [[ $? == "0" ]];
+								then
+									echo "what file do you want to download? (you can download multiple by using \"*\"), or use !list or !cancel to leave the sub dir"
+									while :
+									do
+										read -r -e D_SUB_FILE
+										if [[ $D_SUB_FILE == "!list" ]];
+										then
+											ls ~/.cache/chat/.files/$D_SUBDIR
+											echo " "
+										elif [[ $D_SUB_FILE == "!cancel" ]];
+										then
+											break
+										else
+											echo "downloading files..."
+											echo " "
+											rsync --progress ~/.cache/chat/.files/$D_SUBDIR/$D_SUB_FILE ~/Downloads
+											if [[ $? == "0" ]];
+											then
+												echo "success"
+												echo "going back to sub dir selection (type !cancel followed by another !cancel to go back to the chat)"
+												break
+											else
+												echo "no such file \"$D_SUBDIR/$D_SUB_FILE\" (going back to sub dir selection)"
+											fi
+										fi
+									done
+								else
+									echo "ls failed, please enter another dir"
+								fi
+							fi
+						done
+					elif [[ $D_FILE == "!cancel" ]];
+					then
+						break
+					else
+						echo "downloading files..."
+						echo " "
+						rsync --progress ~/.cache/chat/.files/$D_FILE ~/Downloads
+						if [[ $? == "0" ]];
+						then
+							echo "success"
+							echo "press enter to return to the chat"
+							read
+							break
+						else
+							echo "no such file \"$D_FILE\", please enter another file"
+						fi
+					fi
+				done				
+			elif [[ $MAIN == "!help" ]];
+			then
+				echo " "
+				echo "available msgbox commands are: !exit, !back, !users, !help, !download, !upload"
+				echo " "
+				echo "refer to \"help_msgbox\" or the readme at https://github.com/Tina-lel/shitchat/blob/main/README.md for more info"
+				echo "press enter to return to the chat screen"
+				read 
+			else
+				date "+%T" >> ~/.cache/chat/$CHAT
+				echo -n "$NAME: " >> ~/.cache/chat/$CHAT
+				echo "$MAIN" >> ~/.cache/chat/$CHAT
+				echo "--------" >> ~/.cache/chat/$CHAT
+			fi
+		done
+	done
+
+elif [[ $1 == "umount" ]];
+then
+	echo "writing user profile..."
+	sed -i '$d' ~/.cache/chat/.users/$NAME
+	echo "Currently: Offline" >> ~/.cache/chat/.users/$NAME
+	echo "unmounting sftp share..."
+	umount -l ~/.cache/chat
+
+elif [[ $1 == "help" ]];
+then
+	echo "----------------------------------------------------------------------"
+	echo "available commands are: chat, mount, umount, help, readme, help_msgbox"
+	echo "----------------------------------------------------------------------"
+	echo "chat: the main chat"
+	echo "mount: mounts the SFTP share"
+	echo "umount: unmounts the SFTP share"
+	echo "help: displays this message"
+	echo "help_msgbox: displays msgbox commands"
+	echo "readme: display the Readme file"
+
+elif [[ $1 == "help_msgbox" ]];
+then
+	echo "------------------------------------------------------------------------------"
+	echo "available msgbox commands are: !exit, !back, !users, !help, !download, !upload"
+	echo "------------------------------------------------------------------------------"
+
+elif [[ $1 == "readme" ]];
+then
+	curl https://raw.githubusercontent.com/Tina-lel/shitchat/main/README.md
+
+else
+	echo "unknown command \"$1\" use \"help\" for a list of commands"
+
+fi
