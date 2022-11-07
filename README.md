@@ -9,6 +9,8 @@ Dependencies:
 -
 sshfs
 
+rsync (optional for file uploading and downloading)
+
 Ussage:
 -
 
@@ -53,10 +55,14 @@ readme: displays this file
 Msgbox commands:
 -
 
-!exit: exits the chat, and unmounts the SFTP share
+!exit: exits the chat, writes user file, and unmounts the SFTP share
 
 !back: goes back to the chat selection screen
 
 !users: list all users
+
+!upload: uploads files to the SFTP share
+
+!download: downloads files from the SFTP share
 
 !help: displays a help message
