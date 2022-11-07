@@ -34,7 +34,7 @@ then
 		exit
 	fi
 
-	while [[ $MAIN != "exit" ]]
+	while :
 	do
 		echo "writing user profile..."
 		mkdir -p ~/.cache/chat/.users
