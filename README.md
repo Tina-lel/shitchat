@@ -46,6 +46,8 @@ mount: mounts the SFTP share
 
 umount: unmounts the SFTP share
 
+sync: sync's "chat" form github
+
 help: displays the help message
 
 help_msgbox: displays msgbox commands
