@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# GENERAL CONFIG START
+
+export NAME="MyName"
+export STATUS="ReplaceMe"
+export DOWNLOADS="/home/user/Downloads/"
+
+# GENERAL CONFIG END
+
+if [[ $1 == "mount" ]];
+then
+	# SFTP CONFIG START
+
+	export SFTP="127.0.0.1"
+	export PORT="22"
+	export USR="user"
+	export DIR="chat"
+
+	#SFTP CONFIG END
+fi
