@@ -282,7 +282,7 @@ then
 	echo "chat: the main chat"
 	echo "mount: mounts the SFTP share"
 	echo "umount: unmounts the SFTP share"
-	echo "sync: sync's "chat" from github"
+	echo "sync: sync's \"chat\" from github"
 	echo "help: displays this message"
 	echo "help_msgbox: displays msgbox commands"
 	echo "readme: display the Readme file"
