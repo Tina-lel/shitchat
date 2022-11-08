@@ -16,9 +16,9 @@ Ussage:
 
 git clone https://github.com/Tina-lel/shitchat && cd shitchat
 
-chmod +x chat
+chmod +x chat && chmod +x config
 
-open up the "chat" file with a text editor of your choice and find the #GENERAL CONFIG START part, replace "MyName" with another name, "ReplaceMe" with a status (for example "Playing Minecraft" or something) and "/home/user/Downloads" with a dir where you want downloaded files to be safed to. next, scroll down to the "#SFTP CONFIG START" part. (you need to enter an sftp address, a user, a password, and a user writeable remote directory on the SFTP server (wich must contain a plain text file called "main") ), then save the file.
+open up the "config" file with a text editor of your choice and find the #GENERAL CONFIG START part, replace "MyName" with another name, "ReplaceMe" with a status (for example "Playing Minecraft" or something) and "/home/user/Downloads" with a dir where you want downloaded files to be safed to. next, scroll down to the "#SFTP CONFIG START" part. (you need to enter an sftp address, a user, a password, and a user writeable remote directory on the SFTP server (wich must contain a plain text file called "main") ), then save the file.
 
 run ./chat mount, and enter the password, for your sshd server.
 
@@ -29,6 +29,11 @@ and then select a chat room (you can create new ones by entering a name, wich is
 to chat press ctrl+c wich will open the "msgbox", for a list of commands type !help or read the bottom part of the readme.
 
 if you did not exit via !exit in the message box, run ./chat umount, to unmount the sftp share.
+
+Updating:
+-
+
+run ./chat sync, wich does everything for you
 
 Installation (dont):
 -
