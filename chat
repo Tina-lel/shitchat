@@ -229,7 +229,7 @@ then
 												break
 											else
 												echo " "
-												echo "no such file \"$D_SUBDIR/$D_SUB_FILE\" (going back to sub dir selection)"
+												echo "no such file \"$D_SUBDIR/$D_SUB_FILE\", please enter another file"
 											fi
 										fi
 									done
