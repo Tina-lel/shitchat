@@ -35,13 +35,6 @@ Updating:
 
 run ./chat sync, wich does everything for you
 
-Installation (dont):
--
-
-first, follow the instructions above, and make sure its working. then run "sudo cp chat /usr/local/bin/" and enter your password. then just run the "chat" command.
-
-Note: if you need to edit the SFTP server details, open the file /usr/local/bin/chat with a text editor, and edit the details, as explained above.
-
 Commands:
 -
 
